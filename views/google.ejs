@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Login</title>
+
+  <!-- Google Identity Platform -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    }
+    .login-container {
+      background-color: #fff;
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+    .login-container:hover {
+      transform: translateY(-10px);
+    }
+    h2 {
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 24px;
+    }
+    .g_id_signin {
+      margin-top: 30px;
+    }
+    .login-container a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #4285f4;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .login-container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login with Google</h2>
+
+    <!-- Google Login Button -->
+    <div id="g_id_onload"
+       data-client_id="<%= googleClientId %>"
+       data-callback="handleCredentialResponse"
+       data-auto_prompt="false">
+    </div>
+
+    <div class="g_id_signin"
+       data-type="standard">
+    </div>
+  </div>
+
+  <script>
+    function handleCredentialResponse(response) {
+      const redirectLink = document.getElementById("redirect");
+
+      // Send token to backend for verification
+      fetch("http://localhost:5000/api/v1/auth/google", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: response.credential })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          console.log(data)
+          // alert("Login Successful! Welcome, " + data.payload.name);
+          const token = data.token;
+            fetch("http://localhost:5000/page/success", {
+              method: "GET",
+              headers: {
+                "Authorization": `Bearer ${token}`
+              }
+            })
+            .then(response => response.text()) // Get the HTML response
+            .then(html => {
+              document.body.innerHTML = html; // Replace body with new page content
+            })
+            .catch(error => console.error("Error loading dashboard:", error));
+        } else {
+          alert("Login Failed!");
+        }
+      })
+      .catch(error => console.error("Error:", error));
+    }
+  </script>
+
+</body>
+</html>
