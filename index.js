@@ -6,7 +6,17 @@ const apiRoutes = require("./src/routes");
 const pageRoutes = require("./src/routes/pageRoute");
 // import sequize database
 const sequelize = require("./config/database");
-const cors = require("cors");
+ const cors = require("cors");
+
+
+// models import 
+const RoomUser = require('./db/models/roomUser')
+const Message = require('./db/models/message')
+
+const { Server } = require("socket.io");
+const io = new Server(3000, {
+  cors: { origin: "*" },
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,11 +25,11 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 // cors setup
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "*",
+//   })
+// );
 // test database connection
 sequelize
   .authenticate()

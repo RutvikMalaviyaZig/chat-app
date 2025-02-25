@@ -1,24 +1,25 @@
 "use strict";
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
+const Room = require('./room')
+const Message = require('./message')
 
 const User = sequelize.define(
-  "User",
+  "Users",
   {
     id: {
+      type: DataTypes.UUID,
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      defaultValue: DataTypes.UUIDV4,
     },
-
-    firstName: {
+    firstname: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
-    lastName: {
+    lastname: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
@@ -66,9 +67,17 @@ const User = sequelize.define(
   {
     paranoid: true,
     freezeTableName: true,
-    modelName: "User",
+    tableName: "Users",
     timestamps: true,
   }
 );
+
+
+User.hasMany(Room, { foreignKey: "creatorid" });
+Room.belongsTo(User, { foreignKey: "creatorid" });
+
+User.hasMany(Message, { foreignKey: "senderid" });
+Message.belongsTo(User, { foreignKey: "senderid" });
+
 
 module.exports = User;

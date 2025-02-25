@@ -5,8 +5,8 @@ const { generateToken } = require("../utils/jwt");
 const verifyToken = require("../utils/verifyGoogle");
 
 const handleSignup = async (req, res) => {
-  const { firstName, lastName, email, password, mobile } = req.body;
-  if (!firstName || !lastName || !email || !password || !mobile) {
+  const { firstname, lastname, email, password, mobile } = req.body;
+  if (!firstname || !lastname || !email || !password || !mobile) {
     return res.status(400).json({ message: "All fields are required" });
   }
   const id = uuidv4();
@@ -14,8 +14,8 @@ const handleSignup = async (req, res) => {
   const hashPassword = bcrypt.hashSync(password, salt);
   const userData = {
     id,
-    firstName,
-    lastName,
+    firstname,
+    lastname,
     email,
     mobile,
     password: hashPassword,
@@ -30,12 +30,13 @@ const handleSignup = async (req, res) => {
       return res.status(400).json({ message: "Mobile already exist" });
     }
     const newUser = await User.create(userData);
+    console.log("new user dofrmeops" +newUser)
     return res.status(201).json({
       message: "User created successfully",
       user: {
         id: newUser.id,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
+        firstname: newUser.firstname,
+        lastname: newUser.lastname,
         email: newUser.email,
         mobile: newUser.mobile,
       },
