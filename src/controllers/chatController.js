@@ -3,7 +3,7 @@ const Message = require('../../db/models/message');
 const Room = require('../../db/models/room');
 const RoomUser = require('../../db/models/roomUser');
 const User = require('../../db/models/user')
-const { Op } = require("sequelize");
+const { Op} = require("sequelize");
 
 const http = require('http');
 const { Server } = require('socket.io');
@@ -13,6 +13,28 @@ const io = new Server(server);
 
 const test = (req, res) => {
     return res.json({ message: "Hello World" });
+}
+
+const getMe = async(req,res)=>{
+    try {
+        const userId = req.user.id
+
+    const userInfo = await User.findOne({where: {id : userId}})
+    if (!userInfo) {
+       return res.status(400).json({
+            message: "Plz signup/login"
+        })
+    }
+
+    return res.status(200).json({
+        message :" User details ",
+        data : userInfo
+    })
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        })
+    }
 }
 
 /**
@@ -26,7 +48,7 @@ const getAllRoomsByUserId = async (req, res) => {
     // send to response
 
     try {
-        const { userid } = req.body;
+        const  userid  = req.user.id;
         if (!userid) {
             return res.status(400).json({
                 message: "please feel all fealds"
@@ -40,7 +62,7 @@ const getAllRoomsByUserId = async (req, res) => {
             })
         }
 
-        const allRooms = await Room.findAll({ where: { creatorid: userid } })
+        const allRooms = await RoomUser.findAll({ where: { userid : userid } })
         if (!allRooms) {
             return res.status(400).json({
                 message: "you have no rooms"
@@ -440,13 +462,29 @@ const SendMsgToPerson = async (req, res) => {
         }
 
         const newMessage = await Message.create({ receiverid, message, senderid: userid });
-
-
+        
 
         return res.status(200).json({
             message: "message saved successfully",
             message: newMessage
         });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+const SendMsgToPersonSocket = async (receiverid, message, userid) => {
+    try {
+
+        if (!message || !receiverid || !userid) {
+            return res.status(400).json({
+                message: "All fields require"
+            })
+        }
+
+        const newMessage = await Message.create({ receiverid, message, senderid: userid });
+
+        return newMessage;
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -514,5 +552,8 @@ module.exports = {
     getAllMsgOfRoomId,
     getMsgsOfUser,
     getAllUserOfRoom,
-    getAllUser
+    getAllUser,
+    getMe,
+
+    SendMsgToPersonSocket
 }

@@ -1,0 +1,2068 @@
+{
+	"info": {
+		"_postman_id": "7171e9e1-612c-4807-9778-e57d81bb3d7f",
+		"name": "chat-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38057766"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Email Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rutvik4@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/auth/email/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"email",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Email Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"rutvik1@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/email/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"email",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"114-d0qbOeuMLy6rH9qzAawTHOPpjoU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:57:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User logged in successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ4NjlhMGM0LTI2ZjEtNDY2ZC04ZDQ1LTFmODA0NDRmNjgwMiIsImVtYWlsIjoicnV0dmlrMUBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwNjcsImV4cCI6MTc0MDU4NTQ2N30.3NTI_JGpa74rKg_hVRiWrF8o9PWwIKny-JO4JmeG0pY\"\n}"
+						},
+						{
+							"name": "Email Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"rutvik2@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/email/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"email",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"114-tMp4xGWm6+LPR+TCYuwq/o+LHEw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:58:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User logged in successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3OTQ0N2ViLTFlMmMtNDgxNi1hZmQyLTkxY2ZhNWU3MjViYSIsImVtYWlsIjoicnV0dmlrMkBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwODYsImV4cCI6MTc0MDU4NTQ4Nn0.f3ghEE4h2zMCK3mevuViaEmxa4NNTl9vNStpRl92DMo\"\n}"
+						},
+						{
+							"name": "Email Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"rutvik3@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/email/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"email",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"114-Hdh3kmpk4WzR3bxt3NP8cRJjKqU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:58:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User logged in successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRkZTg4NWM0LTljMjAtNGVmZi1hMzI2LTZkY2EwNTExZTM3ZiIsImVtYWlsIjoicnV0dmlrM0BnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkxMDAsImV4cCI6MTc0MDU4NTUwMH0.eZ-sKzrlYb8sfzyUuvRnsZXCM5YQqhoHiArDdS6XQ7U\"\n}"
+						},
+						{
+							"name": "Email Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"rutvik4@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/email/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"email",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"114-GbGR9ODeOhYRBb9ubzzru6IHTzQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:58:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User logged in successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3YjZhNWYxLTBkZGItNGM5ZC05OWQ0LWEzZDQxMDM5NGFkMyIsImVtYWlsIjoicnV0dmlrNEBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkxMTcsImV4cCI6MTc0MDU4NTUxN30.Y1UbYvPRQZvr2u6Wrf6nxenzQDIQVnZP-CLUgWZKZxU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Mobile Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobile\": \"9737825882\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/auth/mobile/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"mobile",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "google",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/auth/google",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Rutvik4\",\n    \"lastname\": \"Malaviya\",\n    \"email\": \"rutvik4@gmail.com\",\n    \"mobile\": \"9737825884\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/auth/signup",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Rutvik\",\n    \"lastname\": \"Malaviya\",\n    \"email\": \"rutvik1@gmail.com\",\n    \"mobile\": \"9737825881\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/signup",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-VvuzkOtug6NJ8ALftWvdCBNLBFs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:55:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n        \"firstname\": \"Rutvik1\",\n        \"lastname\": \"Malaviya\",\n        \"email\": \"rutvik1@gmail.com\",\n        \"mobile\": \"9737825881\"\n    }\n}"
+						},
+						{
+							"name": "signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Rutvik2\",\n    \"lastname\": \"Malaviya\",\n    \"email\": \"rutvik2@gmail.com\",\n    \"mobile\": \"9737825882\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/signup",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-TunCqhuiSa0cTfAGU6SU/dnNhf8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:56:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n        \"firstname\": \"Rutvik2\",\n        \"lastname\": \"Malaviya\",\n        \"email\": \"rutvik2@gmail.com\",\n        \"mobile\": \"9737825882\"\n    }\n}"
+						},
+						{
+							"name": "signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Rutvik4\",\n    \"lastname\": \"Malaviya\",\n    \"email\": \"rutvik4@gmail.com\",\n    \"mobile\": \"9737825884\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/signup",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-Tow6Bkezt66/RGeerDsddUTUnww\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:57:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n        \"firstname\": \"Rutvik3\",\n        \"lastname\": \"Malaviya\",\n        \"email\": \"rutvik3@gmail.com\",\n        \"mobile\": \"9737825883\"\n    }\n}"
+						},
+						{
+							"name": "signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"Rutvik4\",\n    \"lastname\": \"Malaviya\",\n    \"email\": \"rutvik4@gmail.com\",\n    \"mobile\": \"9737825884\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/auth/signup",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-7v7DG4knjgcp/iaT3wQzq2og/RQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 15:57:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": \"77b6a5f1-0ddb-4c9d-99d4-a3d410394ad3\",\n        \"firstname\": \"Rutvik4\",\n        \"lastname\": \"Malaviya\",\n        \"email\": \"rutvik4@gmail.com\",\n        \"mobile\": \"9737825884\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/v1/users/logout",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "profile [protected]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NzlmZDFkLWU5ODgtNDIyOS1iODZkLWFlMGVlYzBjY2I1MSIsImVtYWlsIjoiaGFyaUBnbWFpbC5jb20iLCJpYXQiOjE3Mzk2MzE5OTMsImV4cCI6MTczOTcxODM5M30.AVBmP3wvHEnzaog6pIJ80fgB0kPOZnTkBXFEaLO3C0Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/v1/users/profile",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMe",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "chat",
+			"item": [
+				{
+					"name": "test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/v1/chat/test",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3YjZhNWYxLTBkZGItNGM5ZC05OWQ0LWEzZDQxMDM5NGFkMyIsImVtYWlsIjoicnV0dmlrNEBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkxMTcsImV4cCI6MTc0MDU4NTUxN30.Y1UbYvPRQZvr2u6Wrf6nxenzQDIQVnZP-CLUgWZKZxU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Room 444\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/room/create",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"room",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/room/create",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"room",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-DuPaWCL2/grtvGvSXYKSjE8r8eE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 03:12:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Room created successfully\",\n    \"data\": {\n        \"id\": \"1649c5b5-f794-4347-96c3-e2145b1d18fc\",\n        \"name\": \"Test\",\n        \"creatorid\": \"018a4b9d-2688-4e85-9858-432c20cd1e3d\",\n        \"updatedAt\": \"2025-02-24T21:42:16.653Z\",\n        \"createdAt\": \"2025-02-24T21:42:16.653Z\",\n        \"deletedAt\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "join-room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3OTQ0N2ViLTFlMmMtNDgxNi1hZmQyLTkxY2ZhNWU3MjViYSIsImVtYWlsIjoicnV0dmlrMkBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwODYsImV4cCI6MTc0MDU4NTQ4Nn0.f3ghEE4h2zMCK3mevuViaEmxa4NNTl9vNStpRl92DMo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomid\" : \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/room/join",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"room",
+								"join"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "if already in room",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"roomid\" : \"e0986894-fcae-4f81-bc9a-8d7b4b2af4c3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/room/join",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"room",
+										"join"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-MZOd8JbGGaG9pHdhlNQmGh4D+p0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:08:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User already in room\"\n}"
+						},
+						{
+							"name": "join-room",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"roomid\" : \"1b333c0e-b926-4348-8b77-4fec435f805e\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/room/join",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"room",
+										"join"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "268"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10c-Tjlz4JebqbK1zXD2MbM5c7RkQqo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:09:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User join room successfully\",\n    \"data\": {\n        \"id\": \"662f7dbf-5311-4b96-a884-8cf52c77b4f6\",\n        \"userid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n        \"roomid\": \"1b333c0e-b926-4348-8b77-4fec435f805e\",\n        \"updatedAt\": \"2025-02-25T10:39:14.729Z\",\n        \"createdAt\": \"2025-02-25T10:39:14.729Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "leave -room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3OTQ0N2ViLTFlMmMtNDgxNi1hZmQyLTkxY2ZhNWU3MjViYSIsImVtYWlsIjoicnV0dmlrMkBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwODYsImV4cCI6MTc0MDU4NTQ4Nn0.f3ghEE4h2zMCK3mevuViaEmxa4NNTl9vNStpRl92DMo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\r\n    \"userid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/room/leave",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"room",
+								"leave"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "leave -room",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\r\n    \"userid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/room/leave",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"room",
+										"leave"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-Hueahp4Lcgz6Hys3KGd1/o1loz4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:26:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User left room successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Rooms through user id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userid\" : \"179447eb-1e2c-4816-afd2-91cfa5e725ba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/rooms/userid",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"rooms",
+								"userid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Rooms",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userid\" : \"4de885c4-9c20-4eff-a326-6dca0511e37f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/rooms/userid",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"rooms",
+										"userid"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "689"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b1-zg3804QhhxdaW926VfLAxD3aLJY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:19:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully get All Room With Userid \",\n    \"rooms\": [\n        {\n            \"id\": \"19721b08-35a1-44f4-95d6-9becc7622649\",\n            \"name\": \"Room 3\",\n            \"creatorid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"createdAt\": \"2025-02-25T10:32:00.914Z\",\n            \"updatedAt\": \"2025-02-25T10:32:00.914Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"e9012c39-e858-41cb-8837-8e334c391261\",\n            \"name\": \"Room 33\",\n            \"creatorid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"createdAt\": \"2025-02-25T10:32:07.177Z\",\n            \"updatedAt\": \"2025-02-25T10:32:07.177Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"e521e369-d22a-4e89-ac95-e1ad043157f0\",\n            \"name\": \"Room 333\",\n            \"creatorid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"createdAt\": \"2025-02-25T10:32:12.104Z\",\n            \"updatedAt\": \"2025-02-25T10:32:12.104Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get one room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3OTQ0N2ViLTFlMmMtNDgxNi1hZmQyLTkxY2ZhNWU3MjViYSIsImVtYWlsIjoicnV0dmlrMkBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwODYsImV4cCI6MTc0MDU4NTQ4Nn0.f3ghEE4h2zMCK3mevuViaEmxa4NNTl9vNStpRl92DMo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomid\":  \"1b333c0e-b926-4348-8b77-4fec435f805e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/rooms/one",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"rooms",
+								"one"
+							],
+							"query": [
+								{
+									"key": "roomid",
+									"value": "1649c5b5-f794-4347-96c3-e2145b1d18fc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "if not present in this room",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"roomid\":  \"1b333c0e-b926-4348-8b77-4fec435f805e\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/rooms/one",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"rooms",
+										"one"
+									],
+									"query": [
+										{
+											"key": "roomid",
+											"value": "1649c5b5-f794-4347-96c3-e2145b1d18fc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sK/q1Z8PwtlGDgAqYrIMlMPtEV4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:40:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"room with this id is not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxOGE0YjlkLTI2ODgtNGU4NS05ODU4LTQzMmMyMGNkMWUzZCIsImVtYWlsIjoicnV0dmlrQGdtYWlsLmNvbSIsImlhdCI6MTc0MDQ1MjYxNiwiZXhwIjoxNzQwNTM5MDE2fQ.xFxXIx4Zfx_CD05UDY4Qf5UUzKYJj4tyFUzEujSLz1E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomid\" : \"af5da787-9616-4f9a-8722-8549b60c024a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/room/delete",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"room",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/v1/chat/users",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/v1/chat/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1267"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f3-Vzdr2VRe30cuOnnLtuAAxmJH3pg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:46:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"users\": [\n        {\n            \"id\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n            \"firstname\": \"Rutvik1\",\n            \"lastname\": \"Malaviya\",\n            \"email\": \"rutvik1@gmail.com\",\n            \"mobile\": \"9737825881\",\n            \"password\": \"$2b$10$I0QxcwsfmmZ/qBZ.F8NHvOXOgxQoiZodBngA7xXqk6yYQT68K9YQa\",\n            \"createdAt\": \"2025-02-25T10:25:56.635Z\",\n            \"updatedAt\": \"2025-02-25T10:25:56.635Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"firstname\": \"Rutvik2\",\n            \"lastname\": \"Malaviya\",\n            \"email\": \"rutvik2@gmail.com\",\n            \"mobile\": \"9737825882\",\n            \"password\": \"$2b$10$7WXitpIOXir.puhgY3IOleaQeEFCSffll6c/CZmdKDWqYbxB/fd1G\",\n            \"createdAt\": \"2025-02-25T10:26:41.820Z\",\n            \"updatedAt\": \"2025-02-25T10:26:41.820Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"firstname\": \"Rutvik3\",\n            \"lastname\": \"Malaviya\",\n            \"email\": \"rutvik3@gmail.com\",\n            \"mobile\": \"9737825883\",\n            \"password\": \"$2b$10$LlErawl/8ficucErTDWtHu8x9l9t4cdz0LIw7v9FpciUT9DPxOZN6\",\n            \"createdAt\": \"2025-02-25T10:27:06.194Z\",\n            \"updatedAt\": \"2025-02-25T10:27:06.194Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"77b6a5f1-0ddb-4c9d-99d4-a3d410394ad3\",\n            \"firstname\": \"Rutvik4\",\n            \"lastname\": \"Malaviya\",\n            \"email\": \"rutvik4@gmail.com\",\n            \"mobile\": \"9737825884\",\n            \"password\": \"$2b$10$etk0HZd/7.B2oZzBH5R2Q.lqayFZV4LHK1gkpOIqmI0aWSjZqoHxu\",\n            \"createdAt\": \"2025-02-25T10:27:24.317Z\",\n            \"updatedAt\": \"2025-02-25T10:27:24.317Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "send msg to room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ4NjlhMGM0LTI2ZjEtNDY2ZC04ZDQ1LTFmODA0NDRmNjgwMiIsImVtYWlsIjoicnV0dmlrMUBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwNjcsImV4cCI6MTc0MDU4NTQ2N30.3NTI_JGpa74rKg_hVRiWrF8o9PWwIKny-JO4JmeG0pY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomid\" : \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\r\n  \"message\" : \"hello room 4 by r134\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/room/msg",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"room",
+								"msg"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "give error if not part of room",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"roomid\" : \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\r\n  \"message\" : \"hello room 4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/room/msg",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"room",
+										"msg"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-e1C3S9CQJ+hJJVq2k6iiu/JN+kQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:49:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"pls join room you are not a part of room\"\n}"
+						},
+						{
+							"name": "send msg to room",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"roomid\" : \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\r\n  \"message\" : \"hello room 4 by r1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/room/msg",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"room",
+										"msg"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "299"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12b-4bMIOLp22Rbk/xhGqLTJ0F1JhmE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:50:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"id\": \"a063026a-85e3-4dcd-bc1f-7a91a76227d4\",\n        \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\n        \"message\": \"hello room 4 by r1\",\n        \"senderid\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n        \"updatedAt\": \"2025-02-25T11:20:54.053Z\",\n        \"createdAt\": \"2025-02-25T11:20:54.053Z\",\n        \"receiverid\": null,\n        \"deletedAt\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "send msg to person",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3OTQ0N2ViLTFlMmMtNDgxNi1hZmQyLTkxY2ZhNWU3MjViYSIsImVtYWlsIjoicnV0dmlrMkBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwODYsImV4cCI6MTc0MDU4NTQ4Nn0.f3ghEE4h2zMCK3mevuViaEmxa4NNTl9vNStpRl92DMo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"receiverid\" : \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\r\n    \"message\" : \"rgsfxv  jdth  \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/person/msg",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"person",
+								"msg"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "send msg to person",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"receiverid\" : \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\r\n    \"message\" : \"message 2 by r1 \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/person/msg",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"person",
+										"msg"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "297"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"129-FFa/5tjE6XYtzaYgsjxkQYWLaXQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:53:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"id\": \"8986b774-0fb5-4772-b01c-8b5a600e301f\",\n        \"receiverid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n        \"message\": \"message 2 by r1 \",\n        \"senderid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n        \"updatedAt\": \"2025-02-25T11:23:45.056Z\",\n        \"createdAt\": \"2025-02-25T11:23:45.056Z\",\n        \"roomid\": null,\n        \"deletedAt\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get msg of person",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3OTQ0N2ViLTFlMmMtNDgxNi1hZmQyLTkxY2ZhNWU3MjViYSIsImVtYWlsIjoicnV0dmlrMkBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwODYsImV4cCI6MTc0MDU4NTQ4Nn0.f3ghEE4h2zMCK3mevuViaEmxa4NNTl9vNStpRl92DMo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Userid\" : \"4de885c4-9c20-4eff-a326-6dca0511e37f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/person/msgs",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"person",
+								"msgs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get msg of person",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Userid\" : \"4de885c4-9c20-4eff-a326-6dca0511e37f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/person/msgs",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"person",
+										"msgs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "348"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15c-ebEnsmq/jo2dNwRqjYUMG0RoF8M\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:54:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"get all msg of person with given id\",\n    \"messages\": [\n        {\n            \"id\": \"8986b774-0fb5-4772-b01c-8b5a600e301f\",\n            \"message\": \"message 2 by r1 \",\n            \"senderid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"receiverid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"roomid\": null,\n            \"createdAt\": \"2025-02-25T11:23:45.056Z\",\n            \"updatedAt\": \"2025-02-25T11:23:45.056Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "get msg of person",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Userid\" : \"4de885c4-9c20-4eff-a326-6dca0511e37f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/person/msgs",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"person",
+										"msgs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b7-QaUJcRbTu0bPY8wdPSoVSUmlHS4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:55:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"get all msg of person with given id\",\n    \"messages\": [\n        {\n            \"id\": \"8986b774-0fb5-4772-b01c-8b5a600e301f\",\n            \"message\": \"message 2 by r1 \",\n            \"senderid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"receiverid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"roomid\": null,\n            \"createdAt\": \"2025-02-25T11:23:45.056Z\",\n            \"updatedAt\": \"2025-02-25T11:23:45.056Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"7bd91552-823e-46a7-9bb6-666d860cc90d\",\n            \"message\": \"message 22 by r1 \",\n            \"senderid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"receiverid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"roomid\": null,\n            \"createdAt\": \"2025-02-25T11:25:19.784Z\",\n            \"updatedAt\": \"2025-02-25T11:25:19.784Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"1eb6a054-8d18-44e7-9c6c-cc7ff1110338\",\n            \"message\": \"message 222 by r1 \",\n            \"senderid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"receiverid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"roomid\": null,\n            \"createdAt\": \"2025-02-25T11:25:25.547Z\",\n            \"updatedAt\": \"2025-02-25T11:25:25.547Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"e7c79e0e-9fb6-4ad1-b164-52b3e1d2da4b\",\n            \"message\": \"rgsfxv  jdth  \",\n            \"senderid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"receiverid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"roomid\": null,\n            \"createdAt\": \"2025-02-25T11:25:34.000Z\",\n            \"updatedAt\": \"2025-02-25T11:25:34.000Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get All rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/v1/chat/rooms",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"rooms"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/v1/chat/rooms",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"rooms"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2545"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f1-xtdgbdG3MMgD7Bz3F5vh0cfM9yo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 16:18:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"get all rooms\",\n    \"rooms\": [\n        {\n            \"id\": \"e0986894-fcae-4f81-bc9a-8d7b4b2af4c3\",\n            \"name\": \"Room 1\",\n            \"creatorid\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n            \"createdAt\": \"2025-02-25T10:30:44.664Z\",\n            \"updatedAt\": \"2025-02-25T10:30:44.664Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"71b23e1a-ebf1-4f65-b24b-a8a9af4563d2\",\n            \"name\": \"Room 11\",\n            \"creatorid\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n            \"createdAt\": \"2025-02-25T10:30:59.508Z\",\n            \"updatedAt\": \"2025-02-25T10:30:59.508Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"d91e130d-3e0c-471e-8d9b-472bc60d5eb6\",\n            \"name\": \"Room 111\",\n            \"creatorid\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n            \"createdAt\": \"2025-02-25T10:31:05.220Z\",\n            \"updatedAt\": \"2025-02-25T10:31:05.220Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"1b333c0e-b926-4348-8b77-4fec435f805e\",\n            \"name\": \"Room 2\",\n            \"creatorid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"createdAt\": \"2025-02-25T10:31:29.871Z\",\n            \"updatedAt\": \"2025-02-25T10:31:29.871Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"d54dab5d-6cdf-42b4-895e-30857a7543eb\",\n            \"name\": \"Room 22\",\n            \"creatorid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"createdAt\": \"2025-02-25T10:31:37.844Z\",\n            \"updatedAt\": \"2025-02-25T10:31:37.844Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"95ba170c-c85d-4f2b-8a4f-958bbd7bc0e4\",\n            \"name\": \"Room 222\",\n            \"creatorid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"createdAt\": \"2025-02-25T10:31:42.374Z\",\n            \"updatedAt\": \"2025-02-25T10:31:42.374Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"19721b08-35a1-44f4-95d6-9becc7622649\",\n            \"name\": \"Room 3\",\n            \"creatorid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"createdAt\": \"2025-02-25T10:32:00.914Z\",\n            \"updatedAt\": \"2025-02-25T10:32:00.914Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"e9012c39-e858-41cb-8837-8e334c391261\",\n            \"name\": \"Room 33\",\n            \"creatorid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"createdAt\": \"2025-02-25T10:32:07.177Z\",\n            \"updatedAt\": \"2025-02-25T10:32:07.177Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"e521e369-d22a-4e89-ac95-e1ad043157f0\",\n            \"name\": \"Room 333\",\n            \"creatorid\": \"4de885c4-9c20-4eff-a326-6dca0511e37f\",\n            \"createdAt\": \"2025-02-25T10:32:12.104Z\",\n            \"updatedAt\": \"2025-02-25T10:32:12.104Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\n            \"name\": \"Room 4\",\n            \"creatorid\": \"77b6a5f1-0ddb-4c9d-99d4-a3d410394ad3\",\n            \"createdAt\": \"2025-02-25T10:32:41.163Z\",\n            \"updatedAt\": \"2025-02-25T10:32:41.163Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"c5984435-dcfd-42a0-9c74-41b539894b5f\",\n            \"name\": \"Room 44\",\n            \"creatorid\": \"77b6a5f1-0ddb-4c9d-99d4-a3d410394ad3\",\n            \"createdAt\": \"2025-02-25T10:32:47.176Z\",\n            \"updatedAt\": \"2025-02-25T10:32:47.176Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"4c5cb256-0b64-43f0-85a1-02a8c0a55606\",\n            \"name\": \"Room 444\",\n            \"creatorid\": \"77b6a5f1-0ddb-4c9d-99d4-a3d410394ad3\",\n            \"createdAt\": \"2025-02-25T10:32:52.013Z\",\n            \"updatedAt\": \"2025-02-25T10:32:52.013Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get all msg of room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3OTQ0N2ViLTFlMmMtNDgxNi1hZmQyLTkxY2ZhNWU3MjViYSIsImVtYWlsIjoicnV0dmlrMkBnbWFpbC5jb20iLCJpYXQiOjE3NDA0OTkwODYsImV4cCI6MTc0MDU4NTQ4Nn0.f3ghEE4h2zMCK3mevuViaEmxa4NNTl9vNStpRl92DMo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/v1/chat/room/msgs",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"chat",
+								"room",
+								"msgs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all msg of room",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\"   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/api/v1/chat/room/msgs",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chat",
+										"room",
+										"msgs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "901"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"385-eG3Y0vTNemVrfOzY/ZOT9n09+Pw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 17:04:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"get all messages\",\n    \"messages\": [\n        {\n            \"id\": \"2a2ca1a7-1630-4eb2-8f43-c4636f53f640\",\n            \"message\": \"hello room 4\",\n            \"senderid\": \"179447eb-1e2c-4816-afd2-91cfa5e725ba\",\n            \"receiverid\": null,\n            \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\n            \"createdAt\": \"2025-02-25T11:19:44.807Z\",\n            \"updatedAt\": \"2025-02-25T11:19:44.807Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"b7e56960-b174-4559-9c3b-e500baf2aa6c\",\n            \"message\": \"hello room 4 by r1\",\n            \"senderid\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n            \"receiverid\": null,\n            \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\n            \"createdAt\": \"2025-02-25T11:20:38.548Z\",\n            \"updatedAt\": \"2025-02-25T11:20:38.548Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": \"a063026a-85e3-4dcd-bc1f-7a91a76227d4\",\n            \"message\": \"hello room 4 by r1\",\n            \"senderid\": \"4869a0c4-26f1-466d-8d45-1f80444f6802\",\n            \"receiverid\": null,\n            \"roomid\": \"3c8999cd-93c3-4b4f-8c0e-0f2a12e49f7d\",\n            \"createdAt\": \"2025-02-25T11:20:54.053Z\",\n            \"updatedAt\": \"2025-02-25T11:20:54.053Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
