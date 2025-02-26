@@ -5,10 +5,7 @@ const RoomUser = require('../../db/models/roomUser');
 const User = require('../../db/models/user')
 const { Op} = require("sequelize");
 
-const http = require('http');
-const { Server } = require('socket.io');
-const server = http.createServer();
-const io = new Server(server);
+
 
 
 const test = (req, res) => {
@@ -62,16 +59,36 @@ const getAllRoomsByUserId = async (req, res) => {
             })
         }
 
-        const allRooms = await RoomUser.findAll({ where: { userid : userid } })
-        if (!allRooms) {
+        const allRoomsJoin = await RoomUser.findAll({ where: { userid : userid } })
+        if (!allRoomsJoin) {
             return res.status(400).json({
                 message: "you have no rooms"
             })
         }
 
+        const roomIds = allRoomsJoin.map(item => item.roomid);
+
+        const rooms = await Room.findAll({
+            where: {
+              id: {
+                [Op.in]: roomIds  
+              }
+            }
+          });
+
+        const allRoomByCreate = await Room.findAll({where: {creatorid : userid}})
+          console.log(allRoomByCreate);
+
+        const combinedResponse = {
+            roomsByJoindIds: rooms,  // Rooms from roomIds
+            roomsByCreator: allRoomByCreate  // Rooms created by the specified user
+          };
+          
+
+
         return res.status(200).json({
             message: "Successfully get All Room With Userid ",
-            rooms: allRooms
+            rooms: combinedResponse
         })
     } catch (error) {
         return res.status(500).json({
@@ -335,6 +352,21 @@ const sendMessage = async (req, res) => {
         const { roomid, message } = req.body
         const userid = req.user.id
 
+      const msg =  await sendMessageSocket(roomid, message, userid); 
+
+      const messageFromMsg = msg.dataValues.message;
+     return res.status(200).json({
+        message: "message send successfully",
+        data : messageFromMsg
+     })
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+const sendMessageSocket = async (roomid, message, userid) => {
+
+
         const findinRoomuser = await RoomUser.findOne({ where: { roomid, userid } })
         if (!findinRoomuser) {
             return res.status(400).json({
@@ -344,14 +376,8 @@ const sendMessage = async (req, res) => {
 
         const newMessage = await Message.create({ roomid, message, senderid: userid });
 
-
-        return res.status(200).json({
-            message: "message sended successfully",
-            message: newMessage
-        });
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
+      return newMessage;
+    
 }
 
 
@@ -461,12 +487,14 @@ const SendMsgToPerson = async (req, res) => {
             })
         }
 
-        const newMessage = await Message.create({ receiverid, message, senderid: userid });
-        
+    const msg =  await SendMsgToPersonSocket(receiverid,message,userid)
 
+        // const newMessage = await Message.create({ receiverid, message, senderid: userid });
+        const messageFromMsg = msg.dataValues.message;
+      
         return res.status(200).json({
             message: "message saved successfully",
-            message: newMessage
+            data: messageFromMsg
         });
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -474,7 +502,6 @@ const SendMsgToPerson = async (req, res) => {
 }
 
 const SendMsgToPersonSocket = async (receiverid, message, userid) => {
-    try {
 
         if (!message || !receiverid || !userid) {
             return res.status(400).json({
@@ -484,10 +511,8 @@ const SendMsgToPersonSocket = async (receiverid, message, userid) => {
 
         const newMessage = await Message.create({ receiverid, message, senderid: userid });
 
+      
         return newMessage;
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
 }
 
 ///////////////////////////
@@ -554,6 +579,6 @@ module.exports = {
     getAllUserOfRoom,
     getAllUser,
     getMe,
-
-    SendMsgToPersonSocket
+    SendMsgToPersonSocket,
+    sendMessageSocket
 }

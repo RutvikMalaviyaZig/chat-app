@@ -8,29 +8,51 @@ const pageRoutes = require("./src/routes/pageRoute");
 const sequelize = require("./config/database");
 const cors = require("cors");
 
-
-// models import 
-const RoomUser = require('./db/models/roomUser')
-const Message = require('./db/models/message')
-
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
 const { Server } = require("socket.io");
-const { SendMsgToPersonSocket } = require("./src/controllers/chatController");
 const io = new Server(3000, {
   cors: { origin: "*" },
 });
+
+// models import
+const RoomUser = require("./db/models/roomUser");
+const Message = require("./db/models/message");
+
+const {
+  SendMsgToPersonSocket,
+  sendMessageSocket,
+  SendMsgToPerson,
+  sendMessage,
+} = require("./src/controllers/chatController");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
-// cors setup
-// app.use(
-//   cors({
-//     origin: "*",
-//   })
-// );
+// Set up Multer storage configuration
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // Set upload destination to 'uploads/' directory
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    // Use current timestamp and file extension to avoid filename conflicts
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Ensure 'uploads' folder exists
+const uploadDir = "./uploads";
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
 // test database connection
 sequelize
   .authenticate()
@@ -61,13 +83,14 @@ io.on("connection", (socket) => {
   if (userId) {
     userSocketMap[userId] = socket.id; // Store userId -> socketId mapping
   }
-  // Handle messages
+
+  
+  // Handle messages of person
   socket.on("sendMessagePersonal", async ({ receiverid, message, userid }) => {
     try {
-    
-      const newMessage = SendMsgToPersonSocket(receiverid, message, userid);
+      const newMessage = SendMsgToPerson(receiverid, message, userid);
 
-      // find socket id of reciever by recieverid 
+      // find socket id of reciever by recieverid
       // not found null
       const receiverSocketId = userSocketMap[receiverid];
 
@@ -82,6 +105,29 @@ io.on("connection", (socket) => {
     }
   });
 
+
+
+  // for the room
+  socket.on("sendMessagetoRoom", async ({ roomid, message, userid }) => {
+    try {
+      const newMessage = sendMessage(roomid, message, userid);
+
+      // find socket id of room using roomid
+      // not found null
+      const roomSocketId = userSocketMap[roomid];
+
+      if (roomSocketId) {
+        // Emit the message to the receiver
+        io.to(roomSocketId).emit("receiveMessageroom", newMessage);
+      } else {
+        console.log(`User ${roomid} is offline or not connected.`);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  });
+
+  
   // Handle disconnection
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
