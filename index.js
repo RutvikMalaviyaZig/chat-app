@@ -6,7 +6,7 @@ const apiRoutes = require("./src/routes");
 const pageRoutes = require("./src/routes/pageRoute");
 // import sequize database
 const sequelize = require("./config/database");
- const cors = require("cors");
+const cors = require("cors");
 
 
 // models import 
@@ -50,34 +50,44 @@ app.use("/api/v1", apiRoutes);
 app.use("/page", pageRoutes);
 
 // create a map for active user
+const userSocketMap = {};
 
-// io.on("connection", (socket) => {
-//   console.log("A user connected:", socket.id);
-//   // when connect add user and socket id to map
+io.on("connection", (socket) => {
+  console.log("A user connected:", socket.id);
 
-//   // Handle messages
-//   socket.on("sendMessagePersonal", async ({ receiverid, message, userid }) => {
-//     try {
-//       // find both users 
+  // when connect add user and socket id to map
+  const userId = socket.handshake.query.userId;
 
-//       const newMessage = SendMsgToPersonSocket(receiverid, message, userid);
+  if (userId) {
+    userSocketMap[userId] = socket.id; // Store userId -> socketId mapping
+  }
+  // Handle messages
+  socket.on("sendMessagePersonal", async ({ receiverid, message, userid }) => {
+    try {
+    
+      const newMessage = SendMsgToPersonSocket(receiverid, message, userid);
 
-//       // find socket id of reciever by recieverid 
-//       // not found null
+      // find socket id of reciever by recieverid 
+      // not found null
+      const receiverSocketId = userSocketMap[receiverid];
 
-//       io.to(receiver-socketid).emit("receiveMessagePersonal", newMessage);
-//     } catch (error) {
-//       console.error("Error sending message:", error);
-//     }
-//   });
+      if (receiverSocketId) {
+        // Emit the message to the receiver
+        io.to(receiverSocketId).emit("receiveMessagePersonal", newMessage);
+      } else {
+        console.log(`User ${receiverid} is offline or not connected.`);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  });
 
-//   // Handle disconnection
-//   socket.on("disconnect", () => {
-//     console.log("User disconnected:", socket.id);
-
-//     // remove from map
-//   });
-// });
+  // Handle disconnection
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+    delete userSocketMap[userId]; // Remove mapping on disconnect
+  });
+});
 
 app.listen(PORT, (req, res) => {
   console.log(`server is listening at http://localhost:${PORT}`);
