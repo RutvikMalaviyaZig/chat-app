@@ -20,9 +20,8 @@ const io = new Server(3000, {
 const RoomUser = require("./db/models/roomUser");
 const Message = require("./db/models/message");
 
+// controller import
 const {
-  SendMsgToPersonSocket,
-  sendMessageSocket,
   SendMsgToPerson,
   sendMessage,
 } = require("./src/controllers/chatController");
@@ -33,25 +32,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.set("view engine", "ejs");
 
-// Set up Multer storage configuration
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    // Set upload destination to 'uploads/' directory
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    // Use current timestamp and file extension to avoid filename conflicts
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
 
-const upload = multer({ storage: storage });
 
-// Ensure 'uploads' folder exists
-const uploadDir = "./uploads";
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
 
 // test database connection
 sequelize
@@ -127,7 +109,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  
+
   // Handle disconnection
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
