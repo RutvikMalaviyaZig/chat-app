@@ -52,9 +52,12 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    fcm_Token: {
+    fcmtoken: {
       type: DataTypes.TEXT,
       allowNull: true,
+    },
+    deviceType : {
+      type: DataTypes.TEXT,
     },
     createdAt: {
       allowNull: false,

@@ -9,6 +9,7 @@
 --     email VARCHAR(255) UNIQUE NOT NULL,
 --     mobile VARCHAR(10) UNIQUE,
 --     password VARCHAR(255) NOT NULL,
+--     fcmtoken VARCHAR NOT NULL
 --     "createdAt" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 --     "updatedAt" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 --     "deletedAt" TIMESTAMP WITHOUT TIME ZONE
