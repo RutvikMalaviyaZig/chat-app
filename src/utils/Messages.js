@@ -52,6 +52,7 @@ const MESSAGES = {
   GET_ALL_USER : "get all user successfully",
   MSG_SAVE : "message saved successfully",
   GIVE_VALID_ID : "please give valid id",
+  INVALID_TYPE_OF_MSG : "Invalid message type. It must be either 'text' or 'file'.",
 };
 
 module.exports = MESSAGES;

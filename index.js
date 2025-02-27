@@ -2,6 +2,8 @@ require("dotenv").config();
 // core modules
 const express = require("express");
 const multer = require('multer');
+const app = express();
+const PORT = process.env.PORT || 3000;
 // routes imports
 const apiRoutes = require("./src/routes");
 const pageRoutes = require("./src/routes/pageRoute");
@@ -41,8 +43,6 @@ const {
   sendMessage,
 } = require("./src/controllers/chatController");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.set("view engine", "ejs");

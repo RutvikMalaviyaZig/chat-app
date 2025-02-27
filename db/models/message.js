@@ -41,7 +41,7 @@ const Message = sequelize.define(
         },
         messagetype : {
             type : DataTypes.ENUM,
-            values : [text, file],
+            values : ['text', 'file'],
         },
         fileurl:{
             type : DataTypes.STRING,

@@ -7,13 +7,9 @@ const { Op } = require("sequelize");
 const MESSAGES = require("../utils/Messages");
 const HTTP_STATUS_CODE = require("../utils/HttpStatusCodes");
 
-const test = (req, res) => {
-  return res.json({ message: "Hello World" });
-};
-
 /**
  * @function getMe
- * @description get user details
+ * @description get all details user
  * @param {Request} req
  * @param {Response} res
  * @returns {object} - give details of login user
@@ -60,9 +56,6 @@ const getMe = async (req, res) => {
  * @returns {object} - give list of all room of given userid
  */
 const getAllRoomsByUserId = async (req, res) => {
-  // find rooms with login user id
-  // send to response
-
   try {
     // get userid from the middleware token
     const userid = req.user.id;
@@ -127,35 +120,6 @@ const getAllRoomsByUserId = async (req, res) => {
       data: "",
       error: "",
       rooms: combinedResponse,
-    });
-  } catch (error) {
-    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
-      status: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
-      errorCode: "",
-      message: error.message,
-      data: "",
-      error: "",
-    });
-  }
-};
-
-/**
- * @function getAllRoom
- * @description get all room
- * @param {Request} req
- * @param {Response} res
- * @returns {object} - give list of all room
- */
-const getAllRoom = async (req, res) => {
-  try {
-    const AllRooms = await Room.findAll();
-    return res.status(HTTP_STATUS_CODE.OK).json({
-      status: HTTP_STATUS_CODE.OK,
-      errorCode: "",
-      message: MESSAGES.GET_ALL_ROOMS,
-      data: "",
-      error: "",
-      rooms: AllRooms,
     });
   } catch (error) {
     return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
@@ -386,7 +350,7 @@ const leaveRoom = async (req, res) => {
   try {
     const { roomid } = req.body;
     const userid = req.user.id;
-    //
+
     if (!roomid || !userid) {
       return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
         status: HTTP_STATUS_CODE.BAD_REQUEST,
@@ -454,9 +418,10 @@ const deleteRoom = async (req, res) => {
     }
     // find room using roomid
     const chekId = await Room.findOne({ where: { id: roomid } });
+
     // check creator is user or not
     if (chekId.creatorid === userid) {
-      await chekId.destroy();
+      await chekId.destroy({ where: { roomid } });
       return res.status(HTTP_STATUS_CODE.OK).json({
         status: HTTP_STATUS_CODE.OK,
         errorCode: "",
@@ -500,10 +465,11 @@ const deleteRoom = async (req, res) => {
 
 const sendMessage = async (req, res) => {
   try {
-    const { roomid, message } = req.body;
+    const { roomid, message, messageType } = req.body; // Assuming messageType is passed
     const userid = req.user.id;
-    // check all fields is given or not
-    if (!roomid || !userid || !message) {
+
+    // Check all required fields are provided
+    if (!roomid || !userid || !message || !messageType) {
       return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
         status: HTTP_STATUS_CODE.BAD_REQUEST,
         errorCode: "",
@@ -512,17 +478,35 @@ const sendMessage = async (req, res) => {
         error: "",
       });
     }
-    // call function for create msg and send to socket
-    const msg = await sendMessageSocket(roomid, message, userid);
 
-    // get msg value from the msg object
+    // Validate messageType (should be either 'text' or 'file')
+    if (!['text', 'file'].includes(messageType)) {
+      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+        status: HTTP_STATUS_CODE.BAD_REQUEST,
+        errorCode: "",
+        message: MESSAGES.INVALID_MESSAGE_TYPE,
+        data: "",
+        error: "",
+      });
+    }
+
+    // Create and send the message, passing the message type
+    const msg = await sendMessageSocket(roomid, message, userid, messageType);
+
+    // Get the message content from the returned message object
     const messageFromMsg = msg.dataValues.message;
+    const messageTypeFromMsg = msg.dataValues.messageType; 
+
+    // Send response with the message content and its type
     return res.status(HTTP_STATUS_CODE.OK).json({
       status: HTTP_STATUS_CODE.OK,
       errorCode: "",
       message: MESSAGES.MESSAGE_SEND,
       error: "",
-      data: messageFromMsg,
+      data: {
+        message: messageFromMsg,
+        messageType: messageTypeFromMsg,  
+      },
     });
   } catch (error) {
     return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
@@ -534,27 +518,46 @@ const sendMessage = async (req, res) => {
     });
   }
 };
+
 // connect to socket and get all thingds
-const sendMessageSocket = async (roomid, message, userid) => {
-  const findinRoomuser = await RoomUser.findOne({ where: { roomid, userid } });
-  if (!findinRoomuser) {
+const sendMessageSocket = async (roomid, message, userid, messageType) => {
+  // Validate the message type (either 'text' or 'file')
+  if (!['text', 'file'].includes(messageType)) {
+    return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+      status: HTTP_STATUS_CODE.BAD_REQUEST,
+      errorCode: "",
+      message: MESSAGES.INVALID_MESSAGE_TYPE,
+      data: "",
+      error: "",
+    });; 
+  }
+
+  // Check if the user is part of the room
+  const findInRoomUser = await RoomUser.findOne({ where: { roomid, userid } });
+
+  // If the user is not part of the room, throw an error with the appropriate message
+  if (!findInRoomUser) {
     return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
       status: HTTP_STATUS_CODE.BAD_REQUEST,
       errorCode: "",
       message: MESSAGES.NOT_PART_OF_ROOM,
       data: "",
       error: "",
-    });
+    });; 
   }
-  // create message
+
+  // Create the new message in the database
   const newMessage = await Message.create({
     roomid,
     message,
     senderid: userid,
+    messagetype : messageType, 
   });
-  // return new message
+
+  // Return the created message object
   return newMessage;
 };
+
 
 /**
  * @function getAllMsgOfRoomId
@@ -600,8 +603,13 @@ const getAllMsgOfRoomId = async (req, res) => {
         error: "",
       });
     }
-    // if part then find all messages of this romm
-    const AllMessage = await Message.findAll({ where: { roomid } });
+    // if part then find all messages of this romm                
+    const AllMessage = await Message.findAll({
+      where: { roomid },
+      order: [["createdAt", "DESC"]], // last msg first see, arrange msg in descnding order
+    });
+
+  
 
     return res.status(HTTP_STATUS_CODE.OK).json({
       status: HTTP_STATUS_CODE.OK,
@@ -629,9 +637,6 @@ const getAllMsgOfRoomId = async (req, res) => {
  * @param {string} req.body.id - roomid
  * @returns {object} - send user list which is part of this group
  */
-/////////////////
-// get all users of room
-// room id
 
 const getAllUserOfRoom = async (req, res) => {
   try {
@@ -680,16 +685,6 @@ const getAllUserOfRoom = async (req, res) => {
   }
 };
 
-/////////////////
-// get all users
-
-const getAllUser = async (req, res) => {
-  const alluser = await User.findAll();
-  return res.status(HTTP_STATUS_CODE.OK).json({
-    users: alluser,
-  });
-};
-
 /**
  * @function SendMsgToPerson
  * @description send message to person using its id
@@ -697,17 +692,13 @@ const getAllUser = async (req, res) => {
  * @param {string} req.body.id - roomid and message
  * @returns {object} - get response of message details
  */
-/////////////////////
-// send Message to person (save message)
-// req.user, message, receiver id
-// store in database
 
 const SendMsgToPerson = async (req, res) => {
   try {
-    const { message, receiverid } = req.body;
+    const { message, receiverid, messageType } = req.body;
     const userid = req.user.id;
     // verify all fields is given or not
-    if (!message || !receiverid || !userid) {
+    if (!message || !receiverid || !userid || !messageType) {
       return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
         status: HTTP_STATUS_CODE.BAD_REQUEST,
         errorCode: "",
@@ -717,17 +708,20 @@ const SendMsgToPerson = async (req, res) => {
       });
     }
     // call function to connect socket and crate message
-    const msg = await SendMsgToPersonSocket(receiverid, message, userid);
+    const msg = await SendMsgToPersonSocket(receiverid, message, userid, messageType);
     // get value of user message
     const messageFromMsg = msg.dataValues.message;
+    const messageTypeFromMsg = msg.dataValues.messageType
 
     return res.status(HTTP_STATUS_CODE.OK).json({
       status: HTTP_STATUS_CODE.OK,
       errorCode: "",
       message: MESSAGES.MSG_SAVE,
-      data: "",
       error: "",
-      data: messageFromMsg,
+      data: {
+        messageFromMsg,
+        messageTypeFromMsg
+      },
     });
   } catch (error) {
     return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
@@ -740,8 +734,8 @@ const SendMsgToPerson = async (req, res) => {
   }
 };
 // connect to socket and get all thingds
-const SendMsgToPersonSocket = async (receiverid, message, userid) => {
-  if (!message || !receiverid || !userid) {
+const SendMsgToPersonSocket = async (receiverid, message, userid, messageType) => {
+  if (!message || !receiverid || !userid || !messageType) {
     return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
       status: HTTP_STATUS_CODE.BAD_REQUEST,
       errorCode: "",
@@ -755,6 +749,7 @@ const SendMsgToPersonSocket = async (receiverid, message, userid) => {
     receiverid,
     message,
     senderid: userid,
+    messagetype : messageType
   });
   // return message
   return newMessage;
@@ -767,12 +762,6 @@ const SendMsgToPersonSocket = async (receiverid, message, userid) => {
  * @param {string} req.body - receiverid
  * @returns {object} - get response of all message details between to user
  */
-///////////////////////////
-// get messages of person
-// req.user, user id
-// message sender req.user reciver user or sender user and reciver req.user
-// send messages
-
 const getMsgsOfUser = async (req, res) => {
   try {
     const { Userid } = req.body;
@@ -828,8 +817,6 @@ const getMsgsOfUser = async (req, res) => {
   }
 };
 
-
-
 /**
  * @function uploadImg
  * @description get message of user
@@ -838,9 +825,8 @@ const getMsgsOfUser = async (req, res) => {
  * @returns {object} - get response of all message details between to user
  */
 
-const uploadImg = async(req,res)=>{
+const uploadImg = async (req, res) => {
   try {
-
     const { message, receiverid } = req.body;
     const userid = req.user.id;
     // verify all fields is given or not
@@ -854,33 +840,33 @@ const uploadImg = async(req,res)=>{
       });
     }
 
-  if (!req.file) {
-    return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
-      status: HTTP_STATUS_CODE.BAD_REQUEST,
+    if (!req.file) {
+      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+        status: HTTP_STATUS_CODE.BAD_REQUEST,
         errorCode: "",
         message: MESSAGES.FILE_NOT_UPLOADED,
         data: "",
         error: "",
+      });
+    }
+
+    const fileUrl = `/uploads/${req.file.filename}`;
+
+    console.log("File uploaded:", req.file);
+
+    res.json({ fileUrl });
+  } catch (error) {
+    return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
+      status: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+      errorCode: "",
+      message: error.message,
+      data: "",
+      error: "",
     });
   }
-  
-
-  const fileUrl = `/uploads/${req.file.filename}`; 
-  
-  console.log("File uploaded:", req.file);
-
-  
-  res.json({ fileUrl });
-
-  } catch (error) {
-    
-  }
-}
-
+};
 
 module.exports = {
-  test,
-  getAllRoom,
   getAllRoomsByUserId,
   getOneRoomById,
   createRoom,
@@ -892,7 +878,6 @@ module.exports = {
   getAllMsgOfRoomId,
   getMsgsOfUser,
   getAllUserOfRoom,
-  getAllUser,
   getMe,
   SendMsgToPersonSocket,
   sendMessageSocket,

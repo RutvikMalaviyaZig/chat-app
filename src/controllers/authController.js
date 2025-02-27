@@ -6,6 +6,7 @@ const verifyToken = require("../utils/verifyGoogle");
 
 const MESSAGES = require("../utils/Messages");
 const HTTP_STATUS_CODE = require("../utils/HttpStatusCodes");
+const {  validationSignup, validationEmailLogin } = require("../validation/Validation");
 
 /**
  * @function handleSignup
@@ -17,17 +18,22 @@ const HTTP_STATUS_CODE = require("../utils/HttpStatusCodes");
 // function for the signup
 const handleSignup = async (req, res) => {
   try {
+    const {error} = validationSignup(req.body)
+    if (error) {
+      console.log(error);
+      return res.send(error.details)
+    }
     // validate all fields are require
     const { firstname, lastname, email, password, mobile } = req.body;
-    if (!firstname || !lastname || !email || !password || !mobile) {
-      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
-        status: HTTP_STATUS_CODE.BAD_REQUEST,
-        errorCode: "",
-        message: MESSAGES.ALL_FIELDS_REQUIRED,
-        data: "",
-        error: "",
-      });
-    }
+    // if (!firstname || !lastname || !email || !password || !mobile) {
+    //   return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+    //     status: HTTP_STATUS_CODE.BAD_REQUEST,
+    //     errorCode: "",
+    //     message: MESSAGES.ALL_FIELDS_REQUIRED,
+    //     data: "",
+    //     error: "",
+    //   });
+    // }
     const id = uuidv4();
 
     // if all field is fullfield the generate hash password
@@ -97,6 +103,13 @@ const handleSignup = async (req, res) => {
 // function for handle email login
 const handleEmailLogin = async (req, res) => {
   try {
+    const {error} = validationEmailLogin(req.body)
+
+    if (error) {
+      console.log(error);
+      return res.send(error.details)
+    }
+
     const { email, password } = req.body;
     // check email or password is given or not
     if (!email || !password) {

@@ -58,6 +58,7 @@ const User = sequelize.define(
     },
     deviceType : {
       type: DataTypes.TEXT,
+      allowNull: true
     },
     createdAt: {
       allowNull: false,
