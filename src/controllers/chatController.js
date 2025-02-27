@@ -710,18 +710,15 @@ const SendMsgToPerson = async (req, res) => {
     // call function to connect socket and crate message
     const msg = await SendMsgToPersonSocket(receiverid, message, userid, messageType);
     // get value of user message
-    const messageFromMsg = msg.dataValues.message;
-    const messageTypeFromMsg = msg.dataValues.messageType
+    const messageArray = [msg.dataValues.message, msg.dataValues.messageType];
+
 
     return res.status(HTTP_STATUS_CODE.OK).json({
       status: HTTP_STATUS_CODE.OK,
       errorCode: "",
       message: MESSAGES.MSG_SAVE,
       error: "",
-      data: {
-        messageFromMsg,
-        messageTypeFromMsg
-      },
+      data: messageArray,
     });
   } catch (error) {
     return res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
@@ -733,24 +730,30 @@ const SendMsgToPerson = async (req, res) => {
     });
   }
 };
+
+
+/**
+ * @function SendMsgToPersonSocket
+ * @description send message to person using its id through socket
+ * @param {object} req - request object
+ * @param {string} req.body.id - roomid and message
+ * @returns {object} - get response of message details
+ */
+
 // connect to socket and get all thingds
-const SendMsgToPersonSocket = async (receiverid, message, userid, messageType) => {
-  if (!message || !receiverid || !userid || !messageType) {
-    return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
-      status: HTTP_STATUS_CODE.BAD_REQUEST,
-      errorCode: "",
-      message: MESSAGES.ALL_FIELDS_REQUIRED,
-      data: "",
-      error: "",
-    });
+const SendMsgToPersonSocket = async (receiverid, message, userid, messagetype) => {
+  if (!message || !receiverid || !userid || !messagetype) {
+    return MESSAGES.ALL_FIELDS_REQUIRED
   }
+  console.log('11111')
   // create message
   const newMessage = await Message.create({
     receiverid,
     message,
     senderid: userid,
-    messagetype : messageType
+    messagetype : messagetype
   });
+
   // return message
   return newMessage;
 };

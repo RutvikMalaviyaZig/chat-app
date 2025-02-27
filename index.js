@@ -4,9 +4,17 @@ const express = require("express");
 const multer = require('multer');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// socket configuration
+const http = require('http');
+const socketIO = require('socket.io');
+const server = http.createServer(app);
+const io = socketIO(server);
+
 // routes imports
 const apiRoutes = require("./src/routes");
 const pageRoutes = require("./src/routes/pageRoute");
+
 // import sequize database
 const sequelize = require("./config/database");
 const cors = require("cors");
@@ -14,13 +22,10 @@ const cors = require("cors");
 const path = require("path");
 const { I18n } = require("i18n");
 
-const { Server } = require("socket.io");
-const io = new Server(3000, {
-  cors: { origin: "*" },
-});
 
 // multer configuration 
 app.use(express.static(path.join(__dirname, 'uploads')));
+
 // storage disk
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -39,8 +44,8 @@ const Message = require("./db/models/message");
 
 // controller import
 const {
-  SendMsgToPerson,
-  sendMessage,
+  sendMessageSocket,
+  SendMsgToPersonSocket,
 } = require("./src/controllers/chatController");
 
 
@@ -74,6 +79,9 @@ app.get("/", (req, res) => {
 app.use("/api/v1", apiRoutes);
 app.use("/page", pageRoutes);
 
+
+
+
 // create a map for active user
 const userSocketMap = {};
 
@@ -81,19 +89,25 @@ io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
   // when connect add user and socket id to map
-  const userId = socket.handshake.query.userId;
+  const userid = socket.handshake.query.userid;
 
-  if (userId) {
-    userSocketMap[userId] = socket.id; // Store userId -> socketId mapping
+  if (userid) {
+    userSocketMap[userid] = socket.id; // Store userId -> socketId mapping
+
   }
 
   // Handle messages of person
-  socket.on("sendMessagePersonal", async ({ receiverid, message, userid }) => {
+  socket.on("sendMessagePersonal", async ({ receiverid, message,  messagetype }) => {
     try {
-      const newMessage = SendMsgToPerson(receiverid, message, userid);
-
+      console.log('edifewioem') 
+      const  userid = socket.handshake.query.userid;
+      console.log("useriddddd"+userid)
+      const newMessage = await SendMsgToPersonSocket(receiverid, message,userid, messagetype);
+      console.log(newMessage)
+     
       // find socket id of reciever by recieverid
       // not found null
+      console.log(userSocketMap)
       const receiverSocketId = userSocketMap[receiverid];
 
       if (receiverSocketId) {
@@ -108,9 +122,9 @@ io.on("connection", (socket) => {
   });
 
   // for the room
-  socket.on("sendMessagetoRoom", async ({ roomid, message, userid }) => {
+  socket.on("sendMessagetoRoom", async ({ roomid, message, userid, messagetype }) => {
     try {
-      const newMessage = sendMessage(roomid, message, userid);
+      const newMessage = sendMessageSocket(roomid, message, userid, messagetype);
 
       // find socket id of room using roomid
       // not found null
@@ -150,10 +164,10 @@ io.on("connection", (socket) => {
   // Handle disconnection
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
-    delete userSocketMap[userId]; // Remove mapping on disconnect
+    delete userSocketMap[userid]; // Remove mapping on disconnect
   });
 });
 
-app.listen(PORT, (req, res) => {
+server.listen(PORT, (req, res) => {
   console.log(`server is listening at http://localhost:${PORT}`);
 });
