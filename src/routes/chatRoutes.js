@@ -25,5 +25,6 @@ router.get('/room/msgs', getAllMsgOfRoomId)
 router.get('/users', getAllUser)
 router.get('/me',getMe )
 
+router.post('/fileupload', )
 
 module.exports = router;

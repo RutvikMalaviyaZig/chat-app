@@ -32,6 +32,8 @@
 --     senderid UUID NOT NULL,
 --     receiverid UUID,
 --     roomid UUID,
+--     messagetype VARCHAR,
+--     fileurl VARCHAR,
 --     "createdAt" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 --    "updatedAt" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 --     "deletedAt" TIMESTAMP WITHOUT TIME ZONE,

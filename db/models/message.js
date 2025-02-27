@@ -39,6 +39,14 @@ const Message = sequelize.define(
                 key: "id"
             }
         },
+        messagetype : {
+            type : DataTypes.ENUM,
+            values : [text, file],
+        },
+        fileurl:{
+            type : DataTypes.STRING,
+            allowNull : true
+        },
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE,

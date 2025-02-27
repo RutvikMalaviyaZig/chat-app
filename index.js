@@ -1,6 +1,7 @@
 require("dotenv").config();
 // core modules
 const express = require("express");
+const multer = require('multer');
 // routes imports
 const apiRoutes = require("./src/routes");
 const pageRoutes = require("./src/routes/pageRoute");
@@ -8,13 +9,27 @@ const pageRoutes = require("./src/routes/pageRoute");
 const sequelize = require("./config/database");
 const cors = require("cors");
 
-const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
+const { I18n } = require("i18n");
+
 const { Server } = require("socket.io");
 const io = new Server(3000, {
   cors: { origin: "*" },
 });
+
+// multer configuration 
+app.use(express.static(path.join(__dirname, 'uploads')));
+// storage disk
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); 
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); 
+  },
+});
+
+const upload = multer({ storage });
 
 // models import
 const RoomUser = require("./db/models/roomUser");
@@ -32,8 +47,14 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.set("view engine", "ejs");
 
+// i18n configuration
+const i18n = new I18n({
+  locales: ["en", "hi", "de"],
+  directory: path.join(__dirname, "/config/locales"),
+  defaultLocale: "en",
+});
 
-
+app.use(i18n.init);
 
 // test database connection
 sequelize
@@ -46,7 +67,7 @@ sequelize
   });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello World" });
+  res.json({ message: res.__("OK") });
 });
 
 // routes
@@ -66,7 +87,6 @@ io.on("connection", (socket) => {
     userSocketMap[userId] = socket.id; // Store userId -> socketId mapping
   }
 
-  
   // Handle messages of person
   socket.on("sendMessagePersonal", async ({ receiverid, message, userid }) => {
     try {
@@ -86,8 +106,6 @@ io.on("connection", (socket) => {
       console.error("Error sending message:", error);
     }
   });
-
-
 
   // for the room
   socket.on("sendMessagetoRoom", async ({ roomid, message, userid }) => {
@@ -109,6 +127,25 @@ io.on("connection", (socket) => {
     }
   });
 
+// file send
+  socket.on("sendFilePersonal", async ({ receiverid, fileUrl, senderid }) => {
+    try {
+      // Find the socket ID of the receiver
+      const receiverSocketId = userSocketMap[receiverid];
+  
+      if (receiverSocketId) {
+        // Emit the file URL to the receiver
+        io.to(receiverSocketId).emit("receiveFilePersonal", {
+          fileUrl,
+          senderid,
+        });
+      } else {
+        console.log(`User ${receiverid} is offline or not connected.`);
+      }
+    } catch (error) {
+      console.error("Error sending file:", error);
+    }
+  });
 
   // Handle disconnection
   socket.on("disconnect", () => {

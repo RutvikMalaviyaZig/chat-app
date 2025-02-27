@@ -828,6 +828,56 @@ const getMsgsOfUser = async (req, res) => {
   }
 };
 
+
+
+/**
+ * @function uploadImg
+ * @description get message of user
+ * @param {object} req - request object
+ * @param {string} req.body - receiverid
+ * @returns {object} - get response of all message details between to user
+ */
+
+const uploadImg = async(req,res)=>{
+  try {
+
+    const { message, receiverid } = req.body;
+    const userid = req.user.id;
+    // verify all fields is given or not
+    if (!message || !receiverid || !userid) {
+      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+        status: HTTP_STATUS_CODE.BAD_REQUEST,
+        errorCode: "",
+        message: MESSAGES.ALL_FIELDS_REQUIRED,
+        data: "",
+        error: "",
+      });
+    }
+
+  if (!req.file) {
+    return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
+      status: HTTP_STATUS_CODE.BAD_REQUEST,
+        errorCode: "",
+        message: MESSAGES.FILE_NOT_UPLOADED,
+        data: "",
+        error: "",
+    });
+  }
+  
+
+  const fileUrl = `/uploads/${req.file.filename}`; 
+  
+  console.log("File uploaded:", req.file);
+
+  
+  res.json({ fileUrl });
+
+  } catch (error) {
+    
+  }
+}
+
+
 module.exports = {
   test,
   getAllRoom,

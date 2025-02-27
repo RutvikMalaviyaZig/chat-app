@@ -1,8 +1,8 @@
 "use strict";
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
-const Room = require('./room')
-const Message = require('./message')
+const Room = require("./room");
+const Message = require("./message");
 
 const User = sequelize.define(
   "Users",
@@ -52,6 +52,10 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    fcm_Token: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -72,12 +76,10 @@ const User = sequelize.define(
   }
 );
 
-
 User.hasMany(Room, { foreignKey: "creatorid" });
 Room.belongsTo(User, { foreignKey: "creatorid" });
 
 User.hasMany(Message, { foreignKey: "senderid" });
 Message.belongsTo(User, { foreignKey: "senderid" });
-
 
 module.exports = User;
