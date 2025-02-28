@@ -99,15 +99,14 @@ io.on("connection", (socket) => {
   // Handle messages of person
   socket.on("sendMessagePersonal", async ({ receiverid, message,  messagetype }) => {
     try {
-      console.log('edifewioem') 
+     
       const  userid = socket.handshake.query.userid;
-      console.log("useriddddd"+userid)
+   
       const newMessage = await SendMsgToPersonSocket(receiverid, message,userid, messagetype);
-      console.log(newMessage)
+      
      
       // find socket id of reciever by recieverid
       // not found null
-      console.log(userSocketMap)
       const receiverSocketId = userSocketMap[receiverid];
 
       if (receiverSocketId) {
@@ -122,9 +121,10 @@ io.on("connection", (socket) => {
   });
 
   // for the room
-  socket.on("sendMessagetoRoom", async ({ roomid, message, userid, messagetype }) => {
+  socket.on("sendMessagetoRoom", async ({ roomid, message,  messagetype }) => {
     try {
-      const newMessage = sendMessageSocket(roomid, message, userid, messagetype);
+      const  userid = socket.handshake.query.userid;
+      const newMessage = await sendMessageSocket(roomid, message, userid, messagetype);
 
       // find socket id of room using roomid
       // not found null
@@ -132,7 +132,8 @@ io.on("connection", (socket) => {
 
       if (roomSocketId) {
         // Emit the message to the receiver
-        io.to(roomSocketId).emit("receiveMessageroom", newMessage);
+        // io.to(roomSocketId).emit("receiveMessageroom", newMessage);
+        socket.broadcast.emit("receiveMessageroom", newMessage);
       } else {
         console.log(`User ${roomid} is offline or not connected.`);
       }

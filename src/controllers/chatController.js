@@ -523,13 +523,7 @@ const sendMessage = async (req, res) => {
 const sendMessageSocket = async (roomid, message, userid, messageType) => {
   // Validate the message type (either 'text' or 'file')
   if (!['text', 'file'].includes(messageType)) {
-    return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
-      status: HTTP_STATUS_CODE.BAD_REQUEST,
-      errorCode: "",
-      message: MESSAGES.INVALID_MESSAGE_TYPE,
-      data: "",
-      error: "",
-    });; 
+    return MESSAGES.INVALID_MESSAGE_TYPE
   }
 
   // Check if the user is part of the room
@@ -537,15 +531,8 @@ const sendMessageSocket = async (roomid, message, userid, messageType) => {
 
   // If the user is not part of the room, throw an error with the appropriate message
   if (!findInRoomUser) {
-    return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
-      status: HTTP_STATUS_CODE.BAD_REQUEST,
-      errorCode: "",
-      message: MESSAGES.NOT_PART_OF_ROOM,
-      data: "",
-      error: "",
-    });; 
+    return MESSAGES.NOT_PART_OF_ROOM
   }
-
   // Create the new message in the database
   const newMessage = await Message.create({
     roomid,
@@ -745,7 +732,7 @@ const SendMsgToPersonSocket = async (receiverid, message, userid, messagetype) =
   if (!message || !receiverid || !userid || !messagetype) {
     return MESSAGES.ALL_FIELDS_REQUIRED
   }
-  console.log('11111')
+ 
   // create message
   const newMessage = await Message.create({
     receiverid,

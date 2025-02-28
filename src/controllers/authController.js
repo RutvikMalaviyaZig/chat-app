@@ -109,18 +109,8 @@ const handleEmailLogin = async (req, res) => {
       console.log(error);
       return res.send(error.details)
     }
-
     const { email, password } = req.body;
-    // check email or password is given or not
-    if (!email || !password) {
-      return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
-        status: HTTP_STATUS_CODE.BAD_REQUEST,
-        errorCode: "",
-        message: MESSAGES.ALL_FIELDS_REQUIRED,
-        data: "",
-        error: "",
-      });
-    }
+    
     // find user based on the email
     const user = await User.findOne({ where: { email } });
     // if no user then through error
