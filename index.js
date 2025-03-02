@@ -85,6 +85,8 @@ app.use("/page", pageRoutes);
 // create a map for active user
 const userSocketMap = {};
 
+global.io = io; // Socket.io globally accessible
+
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
@@ -167,7 +169,15 @@ io.on("connection", (socket) => {
     console.log("User disconnected:", socket.id);
     delete userSocketMap[userid]; // Remove mapping on disconnect
   });
+
 });
+
+
+const sendMessageToAll = (message) => {
+  if (io) {
+    io.emit("message", { content: message });
+  }
+};
 
 server.listen(PORT, (req, res) => {
   console.log(`server is listening at http://localhost:${PORT}`);
