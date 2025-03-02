@@ -4,7 +4,7 @@ const { sendMessageToAll } = require("../controllers/messageSendAll");
 // Schedule the job to run at 8 AM daily
 cron.schedule("0 8 * * *", () => {
   console.log("Sending scheduled message...");
-  sendMessageToAll("Good morning! This is your daily update.");
+  sendMessageToAll("Good morning..!");
 }, {
   timezone: "UTC",
 });
