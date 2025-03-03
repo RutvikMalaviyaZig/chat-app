@@ -3,6 +3,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
 const Room = require("./room");
 const Message = require("./message");
+const MultiDevice = require("./multiDevice");
 
 const User = sequelize.define(
   "Users",
@@ -52,14 +53,6 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    fcmtoken: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    deviceType : {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -85,5 +78,8 @@ Room.belongsTo(User, { foreignKey: "creatorid" });
 
 User.hasMany(Message, { foreignKey: "senderid" });
 Message.belongsTo(User, { foreignKey: "senderid" });
+
+User.hasMany(MultiDevice, { foreignKey: "userid" });
+MultiDevice.belongsTo(User, { foreignKey: "userid" });
 
 module.exports = User;
